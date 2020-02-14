@@ -38,7 +38,7 @@ let colors = [
 ]
 
 // Band size is the delta between consecutive circle radii
-let bandSize: CGFloat = 10.0
+let bandSize: CGFloat = 20.0
 
 struct ContentView: View {
     
