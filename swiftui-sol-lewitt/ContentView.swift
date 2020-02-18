@@ -25,7 +25,7 @@ import SwiftUI
  - Reverse the Range to become n --> 0
  - Create an Array from the range
  */
-let numbers = Array((0..<100).reversed())
+let numbers = Array((0..<10).reversed())
 
 // Create an array of Colors
 let colors = [
@@ -38,7 +38,7 @@ let colors = [
 ]
 
 // Band size is the delta between consecutive circle radii
-let bandSize: CGFloat = 20.0
+// let bandSize: CGFloat = 20.0
 
 struct ContentView: View {
     
@@ -51,12 +51,27 @@ struct ContentView: View {
     
     // Returns the radius length for a given array index
     func radiusAtIndex(_ index: Int) -> CGFloat {
-        return CGFloat(index) * bandSize
+        return CGFloat(40.0)
+        // return CGFloat(index) * bandSize
+    }
+    
+    func distanceFromCenterAtIndex(_ index: Int) -> CGFloat {
+        return CGFloat(100.0)
     }
 
     // Returns a position offset for a given array index
     func offsetAtIndex(_ index: Int) -> CGSize {
-        return CGSize.zero
+        let count = numbers.count
+        // let delta = Float(Angle.degrees(360).radians) / count
+        let delta = (CGFloat.pi * 2) / CGFloat(count)
+        let angle = CGFloat(index) * delta
+        
+        let x = cos(angle) * distanceFromCenterAtIndex(index)
+        let y = sin(angle) * distanceFromCenterAtIndex(index)
+        
+        return CGSize(width: x, height: y)
+        
+        // return CGSize.zero
         // return CGSize(width: CGFloat(index) * 10.0, height: CGFloat(index) * 10.0)
     }
     
